@@ -2,8 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class SearchTests {
 
@@ -23,5 +22,12 @@ public class SearchTests {
         $(By.name("p")).val("selenide").pressEnter();
 
         $("#results").shouldHave(text("selenide.org"));
+    }
+
+    @Test
+    void searchMailRuTest(){
+        open("http://mail.ru");
+        $("#q").setValue("selenide").pressEnter();
+        $("#js-result").shouldHave(text("selenide.org"));
     }
 }
